@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 
 import interpreter
-from xmlscraper import XMLScraper
+from xmlscraper import XMLScraperKeysDates, XMLScraperKeys, XMLScraperDates, XMLScraperNoFilter
 
 
 def main():
@@ -11,11 +11,17 @@ def main():
     cli_parser.add_argument('--metro', type=interpreter.interpret_metro)
     arguments = vars(cli_parser.parse_args())
 
-    xml_scraper = XMLScraper()
-    xml_scraper.add_page('http://w10.bcn.es/APPS/asiasiacache/peticioXmlAsia?id=199', 'events')
-    xml_scraper.add_page('http://opendata-ajuntament.barcelona.cat/resources/bcn/TRANSPORTS%20GEOXML.xml', 'transport')
+    if arguments.get('key') and arguments.get('date'):
+        xml_scraper = XMLScraperKeysDates(arguments.get('key'), arguments.get('date'))
+    elif arguments.get('key'):
+        xml_scraper = XMLScraperKeys(arguments.get('key'))
+    elif arguments.get('date'):
+        xml_scraper = XMLScraperDates(arguments.get('date'))
+    else:
+        xml_scraper = XMLScraperNoFilter()
 
-    filtered_events = xml_scraper.filter_key_date('events', arguments.get('key'), arguments.get('date'))
+    xml_scraper.set_page('http://w10.bcn.es/APPS/asiasiacache/peticioXmlAsia?id=199')
+    filtered_events = xml_scraper.get_filtered_events()
     print(list(filtered_events))
 
 

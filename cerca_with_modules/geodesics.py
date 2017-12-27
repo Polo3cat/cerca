@@ -1,4 +1,4 @@
-# Code adapted from Chris Veness work, free to use, under MIT License:
+# Code adapted by Pablo Carbonell from Chris Veness work, free to use, under MIT License:
 # https://www.movable-type.co.uk/scripts/latlong.html
 import math
 

@@ -25,6 +25,8 @@ def get_age(event):
                 ages.append(int(text[pos_a+1:]))
     if not ages:
         return '-'
+    elif min(ages) == max(ages):
+        return '+12 anys'
     else:
         min_age = min(ages)
         max_age = max(ages)

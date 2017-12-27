@@ -14,15 +14,15 @@ You only need the latest version of Python 3 installed
 
 In short, run the script with python:
 
-'''
+```
 python3 cerca.py
-'''
+```
 
 Use additional arguments to filter results:
 
-'''
+```
 python3 cerca.py --key '["clown","park"]' --date '(27/12/2017,0,10)' --metro '[L1,L5]'
-'''
+```
 
 ## Author
 

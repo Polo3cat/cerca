@@ -29,13 +29,16 @@ def interpret_date(string):
         if positive_delta > 0:
             for delta in range(1, positive_delta + 1):
                 dates += [date + timedelta(days=delta)]
-        if string[end_tuple + 1] == ',':
-            return dates + interpret_date(string[end_tuple + 2:])
-        elif string[end_tuple + 1] == ']':
-            return dates
+        if len(string) > end_tuple+1:
+            if string[end_tuple + 1] == ',':
+                return dates + interpret_date(string[end_tuple + 2:])
+            elif string[end_tuple + 1] == ']':
+                return dates
+            else:
+                msg = '%r is not a valid date' % string
+                argparse.ArgumentTypeError(msg)
         else:
-            msg = '%r is not a valid date' % string
-            argparse.ArgumentTypeError(msg)
+            return dates
     elif string.find(')') == -1:
         msg = '%r is not a valid date' % string
         argparse.ArgumentTypeError(msg)
@@ -51,4 +54,9 @@ def interpret_date(string):
 
 
 def interpret_metro(string):
-        pass
+        no_l = string.replace('L', '')
+        interpretation = ast.literal_eval(no_l)
+        if isinstance(interpretation, int) or isinstance(interpretation, tuple) or isinstance(interpretation, list):
+            return interpretation
+        msg = '%r is not a valid metro' % string
+        argparse.ArgumentTypeError(msg)

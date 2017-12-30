@@ -30,5 +30,5 @@ python3 cerca.py --key '["clown","park"]' --date '(27/12/2017,0,10)' --metro '[L
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 

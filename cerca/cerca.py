@@ -149,8 +149,8 @@ def interpret_key(string):
 
 
 def interpret_date(string):
-    dates = re.findall('[0-3][0-9]/[0-1][0-9]/[0-9]{4}(?!,-[0-9]+,[0-9]+)', string)
-    date_tuples = re.findall('\([0-3][0-9]/[0-1][0-9]/[0-9]{4},-[0-9]+,[0-9]+\)', string)
+    dates = re.findall('[0-3][0-9]/[0-1][0-9]/[0-9]{4}(?!,-?[0-9]+,[0-9]+)', string)
+    date_tuples = re.findall('\([0-3][0-9]/[0-1][0-9]/[0-9]{4},-?[0-9]+,[0-9]+\)', string)
     date_list = []
     for date in dates:
         date_list.append(datetime.strptime(date, '%d/%m/%Y'))
